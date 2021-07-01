@@ -1,0 +1,14 @@
+# h2 connection.
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-plataform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true # enable console.
+      path: /h2 # changed endpoint to h2 admin
+
