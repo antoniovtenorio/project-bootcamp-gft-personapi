@@ -25,10 +25,7 @@ public class PersonService {
 
         Person personToSave = personMapper.toModel(personDTO);
         Person savedPerson = repository.save(personToSave);
-        return MessageResponseDTO
-                .builder()
-                .message("Created person with Id: " + savedPerson.getId())
-                .build();
+        return createResponseMethod(personDTO.getId(), "Created person with Id: ");
     }
 
     public List<PersonDTO> listaAll() {
@@ -43,10 +40,17 @@ public class PersonService {
         return personMapper.toDTO(person);
     }
 
-
     public void deleteById(Long id) throws PersonNotFoundException {
         verifyIfExists(id);
         repository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+        verifyIfExists(id);
+        Person personToUpdate = personMapper.toModel(personDTO);
+        personToUpdate.setId(id);
+        Person updatedPerson = repository.save(personToUpdate);
+        return createResponseMethod(id, "Updated person with Id: ");
     }
 
     // implemented method to reuse
@@ -55,4 +59,10 @@ public class PersonService {
                 .orElseThrow(() -> new PersonNotFoundException(id));
     }
 
+    private MessageResponseDTO createResponseMethod(Long id, String s) {
+        return MessageResponseDTO
+                .builder()
+                .message(s + id)
+                .build();
+    }
 }

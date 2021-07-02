@@ -1,5 +1,6 @@
 package com.projetopersonapi.dio.personapi.dto.requests;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class PersonDTO {
     @NotEmpty
     @CPF
     private String cpf;
+
 
     private String birthDate;
 
