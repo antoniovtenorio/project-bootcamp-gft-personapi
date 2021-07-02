@@ -4,6 +4,7 @@ import com.projetopersonapi.dio.personapi.dto.requests.PersonDTO;
 import com.projetopersonapi.dio.personapi.dto.responses.MessageResponseDTO;
 import com.projetopersonapi.dio.personapi.exceptions.PersonNotFoundException;
 import com.projetopersonapi.dio.personapi.services.PersonService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonResource {
 
     private PersonService service;
-
-    @Autowired
-    public PersonResource(PersonService service) {
-        this.service = service;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
