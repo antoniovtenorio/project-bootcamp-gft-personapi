@@ -37,4 +37,10 @@ public class PersonResource {
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
         return service.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
+        service.deleteById(id);
+    }
 }
